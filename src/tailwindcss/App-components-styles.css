@@ -1,0 +1,24 @@
+@tailwind components;
+
+@layer components {
+    /* Переменные */
+    :root {
+        --theme-color: #52b3d0;
+    }
+
+    .select2-dropdown {
+        @apply rounded-b-lg shadow-md;
+    }
+
+    .btn {
+        padding: theme('spacing.4') theme('spacing.2');
+        /* background-color: var(--theme-color); */
+        /* ... */
+    }
+
+    .card {
+        padding: theme('spacing.4');
+        /* ... */
+    }
+
+}
