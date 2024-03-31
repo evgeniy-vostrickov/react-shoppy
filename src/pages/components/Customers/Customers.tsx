@@ -1,6 +1,6 @@
 import React from 'react'
-import CustomersTable from '../../../widgets/Tables/CustomersTable/CustomersTable'
-import { Typography } from 'antd';
+import CustomersTable from '../../../widgets/components/Tables/CustomersTableWidget'
+import { Typography } from 'antd'
 
 const { Title } = Typography;
 

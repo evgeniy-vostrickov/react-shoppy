@@ -1,11 +1,11 @@
 import React from 'react'
-import { Card } from 'antd';
-import { ISCard } from '../../types/ISCard';
+import { Card } from 'antd'
+import { ISCard } from './types/ISCard'
 
-const SCard: React.FC<ISCard> = ({className, children}) => {
+const SCard: React.FC<ISCard> = ({ listClass, children }) => {
   return (
-    <Card className={className ? className : ''}>
-        {children}
+    <Card className={listClass}>
+      {children}
     </Card>
   )
 }

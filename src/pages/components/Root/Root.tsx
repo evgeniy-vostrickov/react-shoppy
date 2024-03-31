@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { Layout, MenuProps } from 'antd'
+import React, { useCallback, useState } from 'react'
+import { Layout } from 'antd'
 import { Content } from 'antd/es/layout/layout'
-import MainSider from '../../../widgets/components/App/MainSider'
-import MainHeader from '../../../widgets/components/App/MainHeader'
-import IconAvatar from '../../../shared/ui/IconAvatar/IconAvatar'
-import ToolbarAccess from '../../../entites/components/Header/ToolbarAccess'
-import { getItem } from '../../../widgets/const/dataProcessingFunctions'
+import MainSider from '../../../widgets/components/App/ui/MainSider'
+import MainHeader from '../../../widgets/components/App/ui/MainHeader'
 import useResize from '../../helpers/useResize'
 import { Outlet } from 'react-router-dom'
-import SettingsSider from '../../../widgets/components/App/SettingsSider'
+import SettingsSider from '../../../widgets/components/App/ui/SettingsSider'
 import ButtonSettings from '../../../shared/ui/ButtonSettings/ButtonSettings'
 
 const Root: React.FC = () => {
     const [collapsedMainSider, setCollapsedMainSider] = useState(false)
-    const [isSettingsSiderOpen, setIsisSettingsSiderOpen] = useState(false);
+    const [isSettingsSiderOpen, setIsisSettingsSiderOpen] = useState(false)
 
-    const showSettingsSider = () => {
-        setIsisSettingsSiderOpen(true);
-    };
+    const showSettingsSider = useCallback(() => setIsisSettingsSiderOpen(true), [])
 
     const windowSize = useResize()
 

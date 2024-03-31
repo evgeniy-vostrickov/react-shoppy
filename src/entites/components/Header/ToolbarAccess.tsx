@@ -1,7 +1,7 @@
 import React from 'react'
 import NotificationIcon from '../../../shared/ui/NotificationIcon/NotificationIcon'
 import IconAvatar from '../../../shared/ui/IconAvatar/IconAvatar'
-import IToolbarAccess from '../../model/IToolbarAccess'
+import IToolbarAccess from './types/IToolbarAccess'
 
 const ToolbarAccess: React.FC<IToolbarAccess> = ({ collapsed, menuItems, notificationItems }) => {
   return (

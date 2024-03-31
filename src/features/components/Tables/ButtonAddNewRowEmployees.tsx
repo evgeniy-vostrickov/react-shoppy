@@ -1,15 +1,14 @@
 import { Button, Form, Modal } from 'antd'
-import React, { useState } from 'react'
-import handleTableAddNewRow from '../../helpers/handleTableAddNewRow';
-import Title from 'antd/es/typography/Title';
-import FormAddNewRowEmployees from '../../../entites/components/Tables/FormAddNewRowEmployees';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { IEmployee, IFormEmployee } from '../../../widgets/Tables/models/MEmployeesTable';
-import { IButtonAddNewRowEmployees } from '../../model/IButtonAddNewRowEmployees';
+import React, { useCallback, useMemo, useState } from 'react'
+import Title from 'antd/es/typography/Title'
+import FormAddNewRowEmployees from '../../../entites/components/Tables/FormAddNewRowEmployees'
+import { SubmitHandler } from 'react-hook-form'
+import { IFormEmployee } from '../../../shared/ui/Tables/types/MEmployeesTable'
+import { IButtonAddNewRowEmployees } from './types/IButtonAddNewRowEmployees'
 
-const ButtonAddNewRowEmployees: React.FC<IButtonAddNewRowEmployees> = (objDataProps) => {
+const ButtonAddNewRowEmployees: React.FC<IButtonAddNewRowEmployees> = ({dataEmployees, setDataEmployees}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const defaultValuesForm: IFormEmployee = {
+    const defaultValuesForm = useMemo<IFormEmployee>(() => ({
         country: "",
         designation: "",
         employee: {
@@ -18,31 +17,26 @@ const ButtonAddNewRowEmployees: React.FC<IButtonAddNewRowEmployees> = (objDataPr
         },
         hireDate: "",
         reportsTo: ""
-    }
-    const {
-        handleSubmit,
-        reset
-    } = useForm<IEmployee>({
-        defaultValues: defaultValuesForm
-    })
+    }), [])
+    
     const [form] = Form.useForm()
 
-    const onSubmit: SubmitHandler<IEmployee> = (dataAboutEmployees) => {
+    const onSubmit = useCallback<SubmitHandler<IFormEmployee>>((dataAboutEmployees) => {
         console.log(dataAboutEmployees)
-        handleTableAddNewRow<IEmployee>({ ...objDataProps, newDataRow: dataAboutEmployees })
+        setDataEmployees(prevState => [...prevState, {...dataAboutEmployees, id: 12, key: 12}]) // вместо setData должен быть вызов соответствующего action
         setIsModalOpen(false)
-    }
+    }, [])
 
-    const handleCancel = () => {
+    const handleCancel = useCallback(() => {
         setIsModalOpen(false)
         form.setFieldsValue(defaultValuesForm)
-    }
+    }, [form, defaultValuesForm])
 
     // Add a new row through modal window 
     /*const addNewRowTable = async () => {
         const formValues = await form.validateFields()
         console.log(formValues)
-        handleTableAddNewRow<IEmployee>({ ...objDataProps, newDataRow: formValues })
+        handleTableAddNewRow<DataTypeEmployee>({ ...objDataProps, newDataRow: formValues })
         setIsModalOpen(false)
 
         form.resetFields()
@@ -54,7 +48,7 @@ const ButtonAddNewRowEmployees: React.FC<IButtonAddNewRowEmployees> = (objDataPr
             <Button onClick={() => { setIsModalOpen(true) }} type="primary" style={{ marginBottom: 16 }}>
                 Add a row
             </Button>
-            <Modal open={isModalOpen} okButtonProps={{style: {display: "none"}}} onCancel={handleCancel}>
+            <Modal open={isModalOpen} okButtonProps={{ style: { display: "none" } }} onCancel={handleCancel}>
                 <div>
                     <Title level={3}>Добавить нового сотрудника</Title>
                     <FormAddNewRowEmployees form={form} defaultValuesForm={defaultValuesForm} onSubmit={onSubmit} />

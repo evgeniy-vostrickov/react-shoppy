@@ -1,4 +1,4 @@
-import { calendarActions } from '../../widgets/api/store/slices/calendarSlice';
+import { calendarActions } from '../../shared/api/store/slices/calendarSlice';
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { organizationActions } from '../../shared/api/store/slices/organizationSlice'

@@ -1,10 +1,8 @@
 import React from 'react'
-import clasess from './IconAvatar.module.css'
-import IIconAvatar from '../../types/IIconAvatar'
+import IIconAvatar from './types/IIconAvatar'
 import { Avatar, Dropdown, Space } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { UserOutlined } from '@ant-design/icons'
-
 
 const IconAvatar: React.FC<IIconAvatar> = ({ imgUrl, nameUser, items, hidden }) => {
     return (

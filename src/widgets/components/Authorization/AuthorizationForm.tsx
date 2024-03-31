@@ -2,7 +2,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import FormItem from '../../../shared/ui/FormItem/FormItem';
-import { IFieldType } from '../../../shared/types/IFieldType';
+import { IFieldType } from './types/IFieldType';
 
 const AuthorizationForm: React.FC = () => {
     const onFinishFailed = (errorInfo: any) => {

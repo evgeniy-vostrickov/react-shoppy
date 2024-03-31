@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import SButton from '../../../shared/ui/Button/Button'
 
-const EcommerceDownload = () => {
-    setTimeout(() => console.log("Ecommerce been download!"), 500)
-}
-
 const ECardButtonDownload = () => {
+  const ecommerceDownload = useCallback(() => {
+    setTimeout(() => console.log("Ecommerce been download!"), 500)
+  }, [])
+
   return (
-    <SButton classButton='mt-8' textButton="Download" onClick={EcommerceDownload} />
+    <SButton classButton='mt-8' textButton="Download" onClick={ecommerceDownload} />
   )
 }
 

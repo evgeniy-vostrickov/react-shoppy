@@ -1,11 +1,12 @@
-import { Form, FormItemProps } from 'antd'
+import { Form } from 'antd'
 import React, { Children, ReactElement } from 'react'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
-import { IFormItem } from '../../types/IFormItem'
+import { FieldValues, useController } from 'react-hook-form'
+import { IFormItem } from './types/IFormItem'
 
 const FormItem = <T extends FieldValues>({ children, paramsFormItem, ...params }: IFormItem<T>) => {
     const { field, fieldState: { error } } = useController(params)
     const ChildrenElement = React.cloneElement(Children.only(children) as ReactElement, field)
+
     return (
         <Form.Item<T>
             name={params.name}

@@ -1,11 +1,24 @@
 import { Button } from 'antd'
-import React from 'react'
-import handleTableDeleteRows from '../../helpers/handleTableDeleteRows'
-import IHandleTableDeleteRows from '../../model/IHandleTableDeleteRows'
+import React, { useCallback } from 'react'
+import IHandleTableDeleteRows from './types/IHandleTableDeleteRows'
 
-const ButtonDeleteRowCustomer = <T,>(objDataProps: IHandleTableDeleteRows<T>) => {
+const ButtonDeleteRowCustomer: React.FC<IHandleTableDeleteRows> = ({ setDataSource, listRecordsSelected }) => {
+    const handleTableDeleteRows = useCallback(() => {
+        setDataSource((prevState) => {
+            prevState.filter((item) => {
+                listRecordsSelected.forEach((record) => {
+                    if (JSON.stringify(item) === JSON.stringify(record)) {
+                        return false
+                    }
+                })
+                return true
+            })
+            return prevState
+        }) // вместо setData должен быть вызов соответствующего action
+    }, [listRecordsSelected])
+
     return (
-        <Button onClick={() => handleTableDeleteRows(objDataProps)} type="primary" style={{ marginBottom: 16 }}>
+        <Button onClick={handleTableDeleteRows} type="primary" style={{ marginBottom: 16 }}>
             Delete row
         </Button>
     )

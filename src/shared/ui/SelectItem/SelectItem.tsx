@@ -1,9 +1,8 @@
-import React from 'react'
-import { ISelectItem } from '../../types/ISelectItem'
+import React, { memo } from 'react'
+import { ISelectItem } from './types/ISelectItem'
 import { Select } from 'antd'
-import { EventType } from '../../../widgets/api/store/models/MCalendarSlice'
 
-const SelectItem = <T,>({defaultValue, onChange, options}: ISelectItem<T>) => {
+const SelectItem = memo(<T,>({defaultValue, onChange, options}: ISelectItem<T>) => {
     return (
         <Select
             defaultValue={defaultValue}
@@ -12,6 +11,6 @@ const SelectItem = <T,>({defaultValue, onChange, options}: ISelectItem<T>) => {
             options={[...options]}
         />
     )
-}
+})
 
 export default SelectItem
